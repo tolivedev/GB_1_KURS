@@ -12,4 +12,8 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="02_Lesson\" />
+  </ItemGroup>
+
 </Project>
