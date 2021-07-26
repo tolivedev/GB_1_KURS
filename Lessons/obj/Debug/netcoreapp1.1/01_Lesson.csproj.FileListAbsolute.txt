@@ -1,0 +1,10 @@
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\bin\Debug\netcoreapp1.1\01_Lesson.deps.json
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\bin\Debug\netcoreapp1.1\01_Lesson.runtimeconfig.json
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\bin\Debug\netcoreapp1.1\01_Lesson.runtimeconfig.dev.json
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\bin\Debug\netcoreapp1.1\01_Lesson.dll
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\bin\Debug\netcoreapp1.1\01_Lesson.pdb
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\obj\Debug\netcoreapp1.1\01_Lesson.csprojAssemblyReference.cache
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\obj\Debug\netcoreapp1.1\01_Lesson.csproj.CoreCompileInputs.cache
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\obj\Debug\netcoreapp1.1\01_Lesson.AssemblyInfo.cs
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\obj\Debug\netcoreapp1.1\01_Lesson.dll
+D:\TMP\GIT GB\GB_1_KURS\01_Lesson\obj\Debug\netcoreapp1.1\01_Lesson.pdb
