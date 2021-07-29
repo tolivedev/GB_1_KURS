@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <StartupObject></StartupObject>
-    <RootNamespace>_01_Lesson</RootNamespace>
+    <RootNamespace>Lessons</RootNamespace>
     <ApplicationIcon />
   </PropertyGroup>
 
