@@ -1,5 +1,6 @@
 ﻿using System;
-using Lessons._02_Lesson;
+using Lessons._03_Lesson;
+
 
 namespace Lessons
 {
@@ -7,7 +8,6 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            //new Greetings();
 
             Console.SetWindowSize(150, 30);
             try
@@ -19,43 +19,41 @@ namespace Lessons
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine(@"
-                    1.  Запросить у пользователя минимальную и максимальную температуру за сутки и вывести среднесуточную температуру.
-                    2.  Запросить у пользователя порядковый номер текущего месяца и вывести его название.
-                    3.  Определить, является ли введённое пользователем число чётным.
-                    4.  Для полного закрепления понимания простых типов найдите любой чек, либо фотографию этого чека в интернете и 
-                        схематично нарисуйте его в консоли, 
-                        только за место динамических, по вашему мнению, данных (это может быть дата, название магазина, сумма покупок) 
-                        подставляйте переменные, которые были заранее заготовлены до вывода на консоль.");
+                    1. Написать программу, выводящую элементы двухмерного массива по диагонали.
+                    2. Написать программу — телефонный справочник — создать двумерный массив 5*2, хранящий список телефонных контактов: 
+                    первый элемент хранит имя контакта, второй — номер телефона/e-mail.
+                    3. Написать программу, выводящую введенную пользователем строку в обратном порядке(olleH вместо Hello).");
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.WriteLine("\nВыберите вариант задания");
                     char switcher = Console.ReadLine().ToCharArray()[0];
 
                     switch (switcher)
                     {
-                        case '1': { new task02().TempAverage(); break; }
-                        case '2': { new task02().SelectMonth(); break; }
-                        case '3': { new task02().ShowOddNumb(); break; }
-                        case '4': { new task02().PrintBill(); break; }
+                        case '1':
+                            {
+                                Console.WriteLine("Введите размерности массива разделяя нажатием клавиши Ввод");
+                                int dim1 = Convert.ToInt32(Console.ReadLine());
+                                int dim2 = Convert.ToInt32(Console.ReadLine());
+                                new task03().OutputArrayDiag(dim1, dim2); break;
+                            }
+                        case '2': { new task03().PhoneDictionary(); break; }
+                        case '3': { new task03().InvertString(); break; }
 
                         default:
                             {
-                                Console.WriteLine("Введён неверный символ. Ввыберите один из '1,2,3,4' ");
+                                Console.WriteLine("Введён неверный символ. Ввыберите один из '1,2,3' ");
                                 break;
                             }
                     }
-
-
                 }
                 while (true);
-
             }
             catch (Exception arg)
             {
                 Console.WriteLine("Возникло следующее: {0}", arg.Message);
             }
             Console.ReadKey();
-
-
         }
     }
 }
+
