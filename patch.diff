@@ -1,0 +1,47 @@
+diff --git a/.vs/GB_1_KURS/v15/.suo b/.vs/GB_1_KURS/v15/.suo
+index e16b847..bded6a8 100644
+Binary files a/.vs/GB_1_KURS/v15/.suo and b/.vs/GB_1_KURS/v15/.suo differ
+diff --git a/.vs/GB_1_KURS/v15/Server/sqlite3/storage.ide-shm b/.vs/GB_1_KURS/v15/Server/sqlite3/storage.ide-shm
+index 4319c85..72223ee 100644
+Binary files a/.vs/GB_1_KURS/v15/Server/sqlite3/storage.ide-shm and b/.vs/GB_1_KURS/v15/Server/sqlite3/storage.ide-shm differ
+diff --git a/.vs/GB_1_KURS/v15/Server/sqlite3/storage.ide-wal b/.vs/GB_1_KURS/v15/Server/sqlite3/storage.ide-wal
+index a8f2b3f..1899cf9 100644
+Binary files a/.vs/GB_1_KURS/v15/Server/sqlite3/storage.ide-wal and b/.vs/GB_1_KURS/v15/Server/sqlite3/storage.ide-wal differ
+diff --git a/Lessons/05_Lesson/Employee.cs b/Lessons/05_Lesson/Employee.cs
+index b831deb..290f4ac 100644
+--- a/Lessons/05_Lesson/Employee.cs
++++ b/Lessons/05_Lesson/Employee.cs
+@@ -33,6 +33,5 @@ namespace Lessons._05_Lesson
+         {
+             return string.Format("{0} {1} {2} {3} {4} {5}", FIO, Position, Email, MobileNum, Salary, Age);
+         }
+-
+     }
+ }
+diff --git a/Lessons/Lessons.csproj b/Lessons/Lessons.csproj
+index 8817abe..8aaa2b8 100644
+--- a/Lessons/Lessons.csproj
++++ b/Lessons/Lessons.csproj
+@@ -12,4 +12,8 @@
+     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+   </PropertyGroup>
+ 
++  <ItemGroup>
++    <Folder Include="06_Lesson\" />
++  </ItemGroup>
++
+ </Project>
+diff --git a/Lessons/Program.cs b/Lessons/Program.cs
+index 8583453..a2efd90 100644
+--- a/Lessons/Program.cs
++++ b/Lessons/Program.cs
+@@ -10,9 +10,7 @@ namespace Lessons
+     {
+         static void Main(string[] args)
+         {
+-
+             new lesson05();
+-
+         }
+     }
+ }
