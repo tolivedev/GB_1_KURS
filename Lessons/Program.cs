@@ -1,7 +1,5 @@
 ﻿using System;
-using Lessons._03_Lesson;
-using Lessons._04_Lesson;
-using Lessons._05_Lesson;
+using Lessons._06_Lesson;
 
 
 namespace Lessons
@@ -11,7 +9,7 @@ namespace Lessons
         static void Main(string[] args)
         {
 
-            new lesson05();
+            new lesson06();
 
         }
     }
