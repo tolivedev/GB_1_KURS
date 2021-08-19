@@ -1,5 +1,7 @@
 ﻿using System;
 using Lessons._06_Lesson;
+using Lessons._07_Lesson;
+using Lessons._08_Lesson;
 
 
 namespace Lessons
@@ -9,7 +11,7 @@ namespace Lessons
         static void Main(string[] args)
         {
 
-            new lesson06();
+            new Lessons._08_Lesson.task01();
 
         }
     }
