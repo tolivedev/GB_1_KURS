@@ -9,9 +9,10 @@ namespace Lessons._07_Lesson
         public task02()
         {
             Start();
+
         }
-        static int SIZE_X = 3;
-        static int SIZE_Y = 3;
+        static int SIZE_X = 5;
+        static int SIZE_Y = 5;
         static int SIZE_WIN = 4;
 
         static char[,] field = new char[SIZE_Y, SIZE_X];
@@ -24,6 +25,7 @@ namespace Lessons._07_Lesson
 
         private void Start()
         {
+
             InitField();
             PrintField();
             do
@@ -42,7 +44,7 @@ namespace Lessons._07_Lesson
                 PrintField();
                 if (CheckWin(AI_DOT))
                 {
-                    Console.WriteLine("Выиграли Комп");
+                    Console.WriteLine("Выиграл Комп");
                     break;
                 }
                 else if (IsFieldFull()) break;
@@ -71,6 +73,7 @@ namespace Lessons._07_Lesson
                 Console.Write("|");
                 for (int j = 0; j < SIZE_X; j++)
                 {
+                    //Console.Write(field[j, i] + "|");
                     Console.Write(field[i, j] + "|");
                 }
                 Console.WriteLine();
@@ -80,10 +83,11 @@ namespace Lessons._07_Lesson
 
         private static void SetSym(int y, int x, char sym)
         {
+
             field[y, x] = sym;
         }
 
-        private static bool IsCellValid(int y, int x)
+        private static bool IsCellValid(int y, int x)  // пустая ли клетка
         {
             if (x < 0 || y < 0 || x > SIZE_X - 1 || y > SIZE_Y - 1)
             {
@@ -93,7 +97,7 @@ namespace Lessons._07_Lesson
             return field[y, x] == EMPTY_DOT;
         }
 
-        private static bool IsFieldFull()
+        private static bool IsFieldFull()  // ничья
         {
             for (int i = 0; i < SIZE_Y; i++)
             {
@@ -120,142 +124,106 @@ namespace Lessons._07_Lesson
                 Console.WriteLine("Введите координаты вашего хода в диапозоне от 1 до " + SIZE_X);
                 y = Int32.Parse(Console.ReadLine()) - 1;
             } while (!IsCellValid(y, x));
+
             SetSym(y, x, PLAYER_DOT);
         }
 
+        private static int CheckLineDiagUp(int v, int h, char sym)
+        {
+            int counter = 0;
+            for (int i = 0, j = 0; j < SIZE_WIN; i--, j++)
+            {
+                if (field[v + i, h + j] == sym)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
 
-        //private int CheckLineHoriz(int v, int h, char dot)
-        //{
+        private static int CheckDiagDown(int v, int h, char sym)
+        {
+            int counter = 0;
 
+            for (int i = 0; i < SIZE_WIN; i++)
+            {
+                if (field[i + v, i + h] == sym)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
 
-        //    for (int i = h; i < SIZE_WIN+h; i++)
-        //    {
+        private static int CheckLineHoriz(int v, int h, char sym)
+        {
+            int counter = 0;
 
-        //    }
-        //}
+            for (int j = h; j < SIZE_WIN + h; j++)
+            {
+                if (field[v, j] == sym)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
+        private static int CheckLineVert(int v, int h, char sym)
+        {
+            int counter = 0;
+            for (int i = v; i < SIZE_WIN + v; i++)
+            {
+                if (field[i, h] == sym)
+                {
+                    counter++;
+                }
+            }
+            return counter;
+        }
+
 
         private static bool CheckWin(char sym)
         {
-            int counter = 0;
-            if (field.Length==9) // 3x3 win 3
+            for (int v = 0; v < SIZE_Y; v++)
             {
-
-                for (int i = 0; i < field.GetLength(0); i++)
+                for (int h = 0; h < SIZE_X; h++)
                 {
-                    for (int j = i; j < SIZE_WIN; j++)
+                    if (h + SIZE_WIN <= SIZE_X) // наберется ли клеткок для победной серии по горизонтали
                     {
-                        if (field[i, j] == sym)
+                        if (CheckLineHoriz(v, h, sym) >= SIZE_WIN) // по горизонтали
                         {
-                            counter++;
-                        }
-                        if (counter == field.GetLength(0))
-                        {
-                            //counter = 0;
                             return true;
                         }
-                    }
-                }
-                counter = 0;
-                //if (field[0, 0] == sym && field[0, 1] == sym && field[0, 2] == sym)
-                //{
-                //    return true;
-                //}
-                //if (field[1, 0] == sym && field[1, 1] == sym && field[1, 2] == sym)
-                //{
-                //    return true;
-                //}
-                //if (field[2, 0] == sym && field[2, 1] == sym && field[2, 2] == sym)
-                //{
-                //    return true;
-                //}
-                for (int i = 0; i < field.GetLength(0); i++)
-                {
-                    for (int j = 0; j < field.GetLength(1); j++)
-                    {
-                        if (field[j, i] == sym)
+                        if (v - SIZE_WIN > -2)
                         {
-                            counter++;
+                            if (CheckLineDiagUp(v, h, sym) >= SIZE_WIN) // вверх диагональ. для диагонали всегда свойственно увеличение горизонтали
+                            {
+                                return true;
+                            }
                         }
-                        if (counter == field.GetLength(1))
+                        if (v + SIZE_WIN <= SIZE_Y)
                         {
-                            //counter = 0;
+                            if (CheckDiagDown(v, h, sym) >= SIZE_WIN) // вниз диагональ. для диагонали всегда свойственно увеличение горизонтали
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    if (v + SIZE_WIN <= SIZE_Y) // наберется ли клеткок для победной серии по вертикали
+                    {
+                        if (CheckLineVert(v, h, sym) >= SIZE_WIN) // по вертикали
+                        {
                             return true;
                         }
+
                     }
                 }
-                counter = 0;
-                //if (field[0, 0] == sym && field[1, 0] == sym && field[2, 0] == sym)
-                //{
-                //    return true;
-                //}
-                //if (field[0, 1] == sym && field[1, 1] == sym && field[2, 1] == sym)
-                //{
-                //    return true;
-                //}
-                //if (field[0, 2] == sym && field[1, 2] == sym && field[2, 2] == sym)
-                //{
-                //    return true;
-                //}
-
-                for (int i = 0, j = 0; i < Math.Sqrt(field.Length); i++, j++)
-                {
-                    if (field[i, j] == sym)
-                    {
-                        counter++;
-                    }
-                    if (counter == Math.Sqrt(field.Length))
-                    {
-                        //counter = 0;
-                        return true;
-                    }
-                }
-                counter = 0;
-
-                //if (field[0, 0] == sym && field[1, 1] == sym && field[2, 2] == sym)
-                //{
-                //    return true;
-                //}
-                //if (field[2, 0] == sym && field[1, 1] == sym && field[0, 2] == sym)
-                //{
-                //    return true;
-                //}
-
-            //}
-            //else if (field.Length==25) // 5x5 win 4
-            //{
-
-            //    for (int i = 0; 4 < counter; i++)
-            //    {
-            //        for (int j = 0; j < length; j++)
-            //        {
-            //            if (field[i, j] == sym)
-            //            {
-            //                counter++;
-            //            }
-            //        }
-            //    }
-
-            //    for (int i = 0; i < field.GetLength(0); i++)
-            //    {
-            //        for (int j = 0; j < field.GetLength(1); j++)
-            //        {
-            //            if (field[j, i] == sym)
-            //            {
-            //                counter++;
-            //            }
-            //            if (counter == field.GetLength(1))
-            //            {
-            //                //counter = 0;
-            //                return true;
-            //            }
-            //        }
-            //    }
-
             }
-          
-
             return false;
         }
+
+
 
         private static void AiMove()
         {
@@ -267,34 +235,5 @@ namespace Lessons._07_Lesson
             } while (!IsCellValid(y, x));
             SetSym(y, x, AI_DOT);
         }
-
-
-        //static void Main(string[] args)
-        //{
-        //    InitField();
-        //    PrintField();
-        //    do
-        //    {
-        //        playerMove();
-        //        Console.WriteLine("Ваш ход на поле");
-        //        PrintField();
-        //        if (CheckWin(PLAYER_DOT))
-        //        {
-        //            Console.WriteLine("Вы выиграли");
-        //            break;
-        //        }
-        //        else if (IsFieldFull()) break;
-        //        AiMove();
-        //        Console.WriteLine("Ход Компа на поле");
-        //        PrintField();
-        //        if (CheckWin(AI_DOT))
-        //        {
-        //            Console.WriteLine("Выиграли Комп");
-        //            break;
-        //        }
-        //        else if (IsFieldFull()) break;
-        //    } while (true);
-        //    Console.WriteLine("!Конец игры!");
-        //}
     }
 }
